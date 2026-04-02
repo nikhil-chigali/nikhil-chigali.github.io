@@ -16,10 +16,10 @@ timezone:
 
 title: Nikhil Chigali # the main title
 
-tagline: ML Engineer in training, turning research ideas into real-world systems. Experimenting with LLMs, MLOps, and everything in between.
+tagline: AI & ML Engineer. Building and shipping Agentic workflows and RAG systems.
 
 description: >- # used by seo meta and the atom feed
-  I'm Nikhil, an ML engineer in training who enjoys building end-to-end AI systems—from problem definition and data pipelines to training, evaluation, and deployment. Previously, I worked as a project manager at Microsoft on large-scale Azure initiatives, and now I focus on LLMs, parameter-efficient fine-tuning, and MLOps.
+  I'm Nikhil, an AI & ML engineer working on Agentic AI, RAG systems, and LLMOps. I build LLM pipelines that run in production: hybrid retrieval, multi-agent coordination, evaluation frameworks, and the monitoring to keep them reliable. Previously an ML & DS Consultant at Microsoft; MS CS from Rice University.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
