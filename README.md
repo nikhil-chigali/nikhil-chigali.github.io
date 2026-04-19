@@ -1,184 +1,83 @@
-# Nikhil’s Portfolio
+# Nikhil's Portfolio
 
-This repo contains the source code for my personal portfolio website. The site hosts my projects, blogs, paper summaries, and notes, all organized using **category**, **subcategory**, and **tags**.
+Personal portfolio and blog built with [Jekyll](https://jekyllrb.com/) and the [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) theme. Hosted on GitHub Pages.
 
-## Content model
+---
 
-All content lives as posts, differentiated primarily by **category** → **subcategory** → **tags**.
+## Running locally
 
-### Categories (top-level type)
+```bash
+# Serve with live reload (default)
+./tools/run.sh
 
-Current categories:
+# Custom host (e.g. to access from another device on the network)
+./tools/run.sh -H 0.0.0.0
 
-- **project**  
-  End‑to‑end builds and case studies where I design, implement, and (ideally) deploy an AI/ML solution.
+# Production build + html-proofer check
+./tools/test.sh
+```
 
-- **blog**  
-  Longer, structured posts: explanations, deep dives, tutorials, and opinion pieces about ML, LLMs, MLOps, and related topics.
+The dev server runs at `http://127.0.0.1:4000` by default.
 
-- **paper-summary**  
-  Concise breakdowns of individual research papers: motivation, key ideas, method, results, and my takeaways.
+---
 
-- **note**  
-  Short “Today I Learned”–style posts: debugging tricks, infra/MLOps gotchas, small insights, and quick experiments.
+## Creating a new post
 
-- **miscellaneous**  
-  Posts that don’t fit the above buckets (meta notes, announcements, and other experiments).
+Use jekyll-compose to scaffold a post with the correct filename and front matter:
 
-Each post has exactly **one category**.
+```bash
+bundle exec jekyll post "My Post Title"
+```
 
-### Subcategories (topic bucket within a category)
+This creates a file in `_posts/` named `YYYY-MM-DD-my-post-title.md`.
 
-Subcategories refine the category by area or type of work.
-
-Examples:
-
-- Under `project`:
-  - `llm-systems` – LLM‑centric systems (e.g., financial advisor LLM, KG QA).
-  - `mlops-infra` – Deployment, CI/CD, monitoring, and infra experiments.
-  - `computer-vision` – CV projects and older hackathon work.  
-  - `experiments` – Smaller or exploratory projects.
-
-- Under `blog`:
-  - `theory` – Conceptual/theoretical posts and derivations.  
-  - `practical-guides` – Step‑by‑step tutorials and how‑tos.  
-  - `career` – Reflections on learning, transitions, and work.
-
-- Under `paper-summary`:
-  - `llm`  
-  - `peft`  
-  - `knowledge-graphs`  
-  - `reinforcement-learning`
-
-- Under `note`:
-  - `debugging`  
-  - `infra-gotchas`  
-  - `tiny-insights`
-
-Subcategories are optional but recommended; each post should have at most **one** subcategory.
-
-### Tags (fine-grained descriptors)
-
-Tags describe **what** the post involves: methods, tools, topics, or patterns.
-
-Examples (non‑exhaustive):
-
-- Topics: `llm`, `nlp`, `knowledge-graphs`, `reinforcement-learning`, `streaming`, `optimization`.
-- Methods / ideas: `qlora`, `adapters`, `lora`, `dora`, `parameter-efficient-finetuning`, `multi-hop`.
-- Infra / tooling: `mlops`, `azure`, `azureml`, `pytorch`, `pytorch-lightning`, `docker`, `github-actions`, `mlflow`, `bytewax`, `qdrant`, `langchain`, `beam`.
-- Meta: `learning-notes`, `reflection`, `career`
-
-Guidelines:
-- One **category**, zero or one **subcategory**, and multiple **tags** per post.
-- Do not use category names as tags (avoid `project`, `blog` as tags).
-
-***
-
-## Site structure
-
-The site is organized into the following main sections:
-
-- **Home** – Recent posts across all categories with clear labels.  
-- **Categories** – All categories (and optionally subcategories) with descriptions and post lists.
-- **Tags** – All tags with links to filtered views.
-- **Archives** – Chronological list of all posts by year/month.  
-- **About** – Bio, experience, skills, and links to selected projects.
-
-***
-
-## Post front‑matter conventions
+### Front matter
 
 ```yaml
 ---
-title: TITLE
-date: YYYY-MM-DD HH:MM:SS +/-TTTT
-categories: [TOP_CATEGORY, SUB_CATEGORY]
-tags: [TAG]     # TAG names should always be lowercase
+title: Title Here
+date: YYYY-MM-DD HH:MM:SS +0530
+categories: [CATEGORY, SUBCATEGORY]   # max 2 levels, one post = one category
+tags: [tag1, tag2]                    # lowercase; topic/tool descriptors
+math: true                            # add this if the post has LaTeX
 ---
 ```
 
-***
+Categories and subcategories grow organically as content is added — don't pre-define them.
 
-## Category guidelines
+---
 
-- **project**
-  - Clear problem, approach, and outcome.
-  - Includes architecture, methods, tools, and lessons learned.
+## Deployment
 
-- **blog**
-  - Explains a concept, tells a story, or teaches something in depth.
-  - More polished and structured than a note.
+Pushing to `main` triggers the GitHub Actions workflow at `.github/workflows/pages-deploy.yml`, which builds the site and deploys it to GitHub Pages automatically. You can also trigger a manual deploy from the Actions tab.
 
-- **paper-summary**
-  - Focused on a single paper.
-  - Includes citation, core idea, method, results, and commentary.
+---
 
-- **note**
-  - Short, focused, usually written in one sitting.
-  - Often “how I fixed X” or “one insight about Y”.
+## Project layout
 
-- **miscellaneous**
-  - Use sparingly; if a theme repeats, promote it to a real category.
+```
+.
+├── _posts/          # All blog posts (YYYY-MM-DD-title.md)
+├── _tabs/           # Navigation pages (about, categories, tags, archives)
+├── _config.yml      # Site-wide settings: URL, title, author, social links
+├── _data/
+│   ├── contact.yml  # Sidebar contact/social links
+│   └── share.yml    # Share buttons on posts
+├── assets/
+│   ├── img/         # Images; posts use assets/img/posts/<slug>/
+│   └── lib/         # Static assets submodule (Chirpy)
+├── _layouts/        # Theme layout overrides (avoid editing unless necessary)
+├── _includes/       # Theme partial overrides
+├── _sass/           # Theme style overrides
+└── tools/
+    ├── run.sh       # Dev server wrapper
+    └── test.sh      # Production build + proofer wrapper
+```
 
-***
+---
 
-## Subcategory guidelines
+## Useful links
 
-- Each subcategory should group posts that feel related in theme or shape.
-- Prefer reusing existing subcategories over creating near‑duplicates.
-- If a subcategory has only one post for a long time, consider merging or renaming.
-
-***
-
-## Tagging guidelines
-
-- Prefer **specific**, reusable tags over very generic ones.
-- Include:
-  - At least one **topic** tag (e.g., `llm`, `mlops`, `knowledge-graphs`).
-  - At least one **tool/tech** tag (e.g., `pytorch`, `azure`, `mlflow`).
-- Avoid:
-  - Duplicating category/subcategory names as tags.
-  - Super generic tags like `code`, `random`, `stuff`.
-
-***
-
-## Project post checklist
-
-For **project** posts, try to include:
-
-- Problem and motivation  
-- High‑level architecture and design decisions  
-- Datasets and methods  
-- Tools/infra (cloud, frameworks, MLOps pieces)
-- Results, limitations, and next steps  
-- Links to code, demos, and related notes/paper summaries
-
-***
-
-## Paper-summary template
-
-Suggested sections:
-
-1. Motivation  
-2. Problem definition  
-3. Key idea  
-4. Method (high‑level)  
-5. Results (high‑level)  
-6. My takeaways / how it connects to my projects
-
-***
-
-## Note template
-
-Keep Notes lightweight:
-
-- One clear title  
-- 1–3 paragraphs or a short list  
-- Concrete code snippet, config, or command if relevant  
-- Optional: links to related project/blog/paper‑summary posts
-
-***
-
-## Internal bookmarks (for my reference)
-- [Adding a new post](https://chirpy.cotes.page/posts/write-a-new-post/)
-- [Plugin to add new content](https://github.com/jekyll/jekyll-compose)
+- [Chirpy — Writing a new post](https://chirpy.cotes.page/posts/write-a-new-post/)
+- [jekyll-compose](https://github.com/jekyll/jekyll-compose) — post scaffolding
+- [GitHub Actions deploy](.github/workflows/pages-deploy.yml)

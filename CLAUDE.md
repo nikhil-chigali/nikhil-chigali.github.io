@@ -42,17 +42,13 @@ title: Title Here
 date: YYYY-MM-DD HH:MM:SS +0530
 categories: [TOP_CATEGORY, SUB_CATEGORY]  # max 2 levels
 tags: [tag1, tag2]                         # lowercase, topic/tool descriptors
+math: true                                 # add only when post contains LaTeX
 ---
 ```
 
-**Category taxonomy (defined in README.md):**
-- `project` → `[llm-systems, mlops-infra, computer-vision, experiments]`
-- `blog` → `[theory, practical-guides, career]`
-- `paper-summary` → `[llm, peft, knowledge-graphs, reinforcement-learning]`
-- `note` → `[debugging, infra-gotchas, tiny-insights]`
-- `miscellaneous`
+**Categories** grow organically — don't pre-define them. Each post has exactly 1 category, optionally 1 subcategory, and multiple tags. Existing categories in use: `mathematics`, `machine-learning`, `deep-learning`.
 
-Each post has exactly 1 category, optionally 1 subcategory, and multiple tags.
+**Images** for a post go in `assets/img/posts/{post-filename}/` where `{post-filename}` matches the `.md` filename without the extension (e.g. `assets/img/posts/2018-06-18-gradient-descent-backbone-of-ml-algorithms/fig1.png`).
 
 **Site tabs** (navigation pages) are in `_tabs/` — `about.md`, `categories.md`, `tags.md`, `archives.md`.
 

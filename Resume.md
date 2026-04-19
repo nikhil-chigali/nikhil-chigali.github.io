@@ -2,14 +2,6 @@
 
 +1 (713) 498-2302 | nikhil.chigali@gmail.com | linkedin.com/in/nikhil-chigali | github.com/nikhilchigali
 
-## Professional Summary
-
-- AI & ML engineer with ~6 years of experience across ML engineering and consulting (3 years as an ML & DS Consultant at Microsoft on Azure delivery portfolios, ~3 years building ML and LLM systems)
-- Builds hybrid RAG pipelines (BM25 + dense retrieval, Cohere re-rank, Pinecone) and multi-agent systems using LangGraph, CrewAI, Flowise, and Model Context Protocol (MCP)
-- Shipped a 30x SHAP runtime optimization at Verizon by replacing exact computation with a Saabas approximation engine, unblocking real-time diagnostics across a 12M+ device fleet
-- Operates LLM systems with SRE-informed discipline: observability stacks (Langfuse, LangSmith), evaluation pipelines wired into CI (Ragas, DeepEval), latency/cost/citation-coverage monitoring
-- Co-lead author on a NASA spacecraft segmentation benchmark (arXiv:2507.10775), with models fine-tuned to meet sub-second inference on flight-grade hardware
-- MS Computer Science, Rice University (2024). Python expert; also works in FastAPI, PyTorch, Docker, GitHub Actions, Azure, and AWS
 
 ## Education
 
@@ -28,7 +20,7 @@ Bachelor's, Computer Science | GPA: **8.43**
 - Built a hybrid RAG ingestion pipeline for research papers using Unstructured.io's VLM cloud API, Claude Sonnet for table enrichment, and contextual chunking. Raw PDFs are processed into retrieval-ready chunks, each carrying a structured paper > section > subsection prefix, LaTeX-rendered equations, and HTML-formatted tables. This addresses the noise and context-loss problems that make naive PDF chunking unreliable for dense technical content.
 - Designed a hybrid retrieval architecture combining dense semantic search (OpenAI's text-embedding-3-small, 1536-dim) with BM25 sparse vectors in a Pinecone serverless index, followed by a cross-encoder re-ranker (Cohere Re-rank) to rescore chunks by query relevance. This improves precision on acronym-heavy and terminology-dense research content, where pure vector search alone falls short.
 - Added citation enforcement and hallucination gating at the generation layer. GPT-4 calls are configured so the system declines to answer when retrieved chunks do not support a response, rather than generating plausible but unsupported text.
-- Built an LLMOps evaluation layer using Ragas with a golden dataset of ~20 manually verified QA pairs, measuring Faithfulness, Answer Relevancy, and Context Precision on every run. The evaluation script runs in CI, so any change to prompts, retrieval, or model config that drops quality below a set threshold fails the build.
+- Built an LLMOps evaluation layer using Ragas with a golden dataset of ~50 manually verified QA pairs, measuring Faithfulness, Answer Relevancy, and Context Precision on every run. The evaluation script runs in CI, so any change to prompts, retrieval, or model config that drops quality below a set threshold fails the build.
 
 ### LLMOps Observability for Production RAG
 

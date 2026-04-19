@@ -16,7 +16,7 @@ timezone:
 
 title: Nikhil Chigali # the main title
 
-tagline: AI & ML Engineer. Building and shipping Agentic workflows and RAG systems.
+tagline: Building AI systems. Writing about what I learn along the way.
 
 description: >- # used by seo meta and the atom feed
   I'm Nikhil, an AI & ML engineer working on Agentic AI, RAG systems, and LLMOps. I build LLM pipelines that run in production: hybrid retrieval, multi-agent coordination, evaluation frameworks, and the monitoring to keep them reliable. Previously an ML & DS Consultant at Microsoft; MS CS from Rice University.
