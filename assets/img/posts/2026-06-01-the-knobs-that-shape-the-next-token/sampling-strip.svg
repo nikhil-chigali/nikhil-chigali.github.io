@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="320" viewBox="0 0 720 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<style>
+.bg{fill:#ffffff}.bdr{stroke:#e2e8f0}
+.ink{fill:#1e293b}.inks{stroke:#1e293b}
+.body{fill:#475569}.sub{fill:#64748b}.mut{fill:#94a3b8}
+.panel{fill:#f8fafc}.grid{stroke:#f1f5f9}.axis{stroke:#cbd5e1}
+.warn{fill:#fef2f2;stroke:#fecaca}.good{fill:#f0fdf4;stroke:#bbf7d0}
+.heat{fill:#fff7ed;stroke:#fed7aa}.heattx{fill:#c2410c}.heatsub{fill:#b45309}
+.pillw{fill:#fee2e2}.pillwtx{fill:#b91c1c}.pillg{fill:#dcfce7}.pillgtx{fill:#15803d}
+.cjunk{fill:#f1f5f9}.cjunktx{fill:#475569}.cmore{fill:#ffffff;stroke:#cbd5e1}.cmoretx{fill:#64748b}
+.filt{fill:#eef2ff;stroke:#c7d2fe}
+@media (prefers-color-scheme:dark){
+.bg{fill:#1f2430}.bdr{stroke:#39414f}
+.ink{fill:#e6e9f0}.inks{stroke:#e6e9f0}
+.body{fill:#c2cad8}.sub{fill:#aab2c2}.mut{fill:#8b93a5}
+.panel{fill:#272d3a}.grid{stroke:#2a3140}.axis{stroke:#525a6b}
+.warn{fill:#3a2527;stroke:#5e3a3d}.good{fill:#1e3328;stroke:#356048}
+.heat{fill:#3a2a1b;stroke:#6b4a2a}.heattx{fill:#fdba74}.heatsub{fill:#e8a06a}
+.pillw{fill:#4a2527}.pillwtx{fill:#fca5a5}.pillg{fill:#1f3a2a}.pillgtx{fill:#86efac}
+.cjunk{fill:#2b3140}.cjunktx{fill:#aeb6c6}.cmore{fill:#1f2430;stroke:#475063}.cmoretx{fill:#9aa3b5}
+.filt{fill:#262b40;stroke:#434b73}
+}
+</style>
+<rect x="2" y="2" width="716" height="316" rx="16" class="bg bdr" stroke-width="2"/>
+<text x="36" y="44" font-size="19" font-weight="600" class="ink">Sampling: one roll on a weighted strip</text>
+<text x="36" y="66" font-size="13" class="mut">each token owns a slice as wide as its probability; one random number picks the slice</text>
+<rect x="48.0" y="150" width="386.9" height="54" fill="#6366f1"/>
+<text x="241.4" y="176" font-size="13.5" font-weight="600" fill="#ffffff" text-anchor="middle">summer</text>
+<text x="241.4" y="194" font-size="12" fill="#ffffff" text-anchor="middle">0.62</text>
+<rect x="434.9" y="150" width="168.5" height="54" fill="#818cf8"/>
+<text x="519.1" y="176" font-size="13.5" font-weight="600" fill="#ffffff" text-anchor="middle">winter</text>
+<text x="519.1" y="194" font-size="12" fill="#ffffff" text-anchor="middle">0.27</text>
+<rect x="603.4" y="150" width="62.4" height="54" fill="#a5b4fc"/>
+<text x="634.6" y="176" font-size="13.5" font-weight="600" fill="#312e81" text-anchor="middle">autumn</text>
+<text x="634.6" y="194" font-size="12" fill="#312e81" text-anchor="middle">0.10</text>
+<rect x="665.8" y="150" width="6.2" height="54" fill="#e2e8f0"/>
+<line x1="434.9" y1="150" x2="434.9" y2="204" stroke="#ffffff" stroke-width="2"/>
+<line x1="603.4" y1="150" x2="603.4" y2="204" stroke="#ffffff" stroke-width="2"/>
+<line x1="665.8" y1="150" x2="665.8" y2="204" stroke="#ffffff" stroke-width="2"/>
+<text x="48" y="226" font-size="12" class="mut" text-anchor="middle">0</text>
+<text x="672" y="226" font-size="12" class="mut" text-anchor="middle">1</text>
+<text x="491.0" y="104" font-size="13" font-weight="600" class="ink" text-anchor="middle">random number = 0.71</text>
+<line x1="491.0" y1="114" x2="491.0" y2="147" class="inks" stroke-width="1.5"/>
+<path d="M 486.0 141 L 496.0 141 L 491.0 149 Z" class="ink"/>
+<circle cx="491.0" cy="177" r="5" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+<text x="491.0" y="248" font-size="13" class="body" text-anchor="middle">0.71 fell in winter&#8217;s slice, so <tspan font-weight="700" class="ink">winter</tspan> is drawn &#8212; not the top token</text>
+<text x="360" y="294" font-size="13" font-style="italic" class="sub" text-anchor="middle">The widest slice wins most rolls, not every roll; the thin grey tail on the right still catches one now and then.</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="540" viewBox="0 0 720 540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<style>
+.bg{fill:#ffffff}.bdr{stroke:#e2e8f0}
+.ink{fill:#1e293b}.inks{stroke:#1e293b}
+.body{fill:#475569}.sub{fill:#64748b}.mut{fill:#94a3b8}
+.panel{fill:#f8fafc}.grid{stroke:#f1f5f9}.axis{stroke:#cbd5e1}
+.warn{fill:#fef2f2;stroke:#fecaca}.good{fill:#f0fdf4;stroke:#bbf7d0}
+.heat{fill:#fff7ed;stroke:#fed7aa}.heattx{fill:#c2410c}.heatsub{fill:#b45309}
+.pillw{fill:#fee2e2}.pillwtx{fill:#b91c1c}.pillg{fill:#dcfce7}.pillgtx{fill:#15803d}
+.cjunk{fill:#f1f5f9}.cjunktx{fill:#475569}.cmore{fill:#ffffff;stroke:#cbd5e1}.cmoretx{fill:#64748b}
+.filt{fill:#eef2ff;stroke:#c7d2fe}
+@media (prefers-color-scheme:dark){
+.bg{fill:#1f2430}.bdr{stroke:#39414f}
+.ink{fill:#e6e9f0}.inks{stroke:#e6e9f0}
+.body{fill:#c2cad8}.sub{fill:#aab2c2}.mut{fill:#8b93a5}
+.panel{fill:#272d3a}.grid{stroke:#2a3140}.axis{stroke:#525a6b}
+.warn{fill:#3a2527;stroke:#5e3a3d}.good{fill:#1e3328;stroke:#356048}
+.heat{fill:#3a2a1b;stroke:#6b4a2a}.heattx{fill:#fdba74}.heatsub{fill:#e8a06a}
+.pillw{fill:#4a2527}.pillwtx{fill:#fca5a5}.pillg{fill:#1f3a2a}.pillgtx{fill:#86efac}
+.cjunk{fill:#2b3140}.cjunktx{fill:#aeb6c6}.cmore{fill:#1f2430;stroke:#475063}.cmoretx{fill:#9aa3b5}
+.filt{fill:#262b40;stroke:#434b73}
+}
+</style>
+<rect x="2" y="2" width="716" height="536" rx="16" class="bg bdr" stroke-width="2"/>
+<text x="36" y="42" font-size="19" font-weight="600" class="ink">Same two steps, two cutoffs</text>
+<text x="36" y="64" font-size="13" class="mut">a confident step and an uncertain one, filtered by top-k and by top-p</text>
+<rect x="102" y="78" width="184" height="30" rx="15" class="pillw"/>
+<text x="194" y="98" font-size="15" font-weight="700" class="pillwtx" text-anchor="middle">top-k&#160;&#160;&#183;&#160;&#160;k = 40</text>
+<rect x="434" y="78" width="184" height="30" rx="15" class="pillg"/>
+<text x="526" y="98" font-size="15" font-weight="700" class="pillgtx" text-anchor="middle">top-p&#160;&#160;&#183;&#160;&#160;p = 0.9</text>
+<rect x="36" y="116" width="648" height="36" rx="10" class="panel bdr" stroke-width="1"/>
+<text x="52" y="139" font-size="13.5" class="sub"><tspan font-weight="700" class="ink">Confident model</tspan>&#160;&#160;&#183;&#160;&#160;next word after&#160;&#160;<tspan font-style="italic" class="ink">&#8220;the United States of ___&#8221;</tspan></text>
+<rect x="36" y="160" width="316" height="142" rx="12" class="warn" stroke-width="1.5"/>
+<circle cx="66" cy="190" r="12" fill="#f59e0b"/>
+<text x="66" y="195" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">!</text>
+<text x="86" y="196" font-size="19" font-weight="700" class="ink">keeps 40</text>
+<rect x="58" y="218" width="104" height="24" rx="12" fill="#6366f1"/>
+<text x="110.0" y="234" font-size="12.5" fill="#ffffff" text-anchor="middle">America <tspan fill="#c7d2fe">0.95</tspan></text>
+<rect x="170" y="218" width="97" height="24" rx="12" class="cjunk"/>
+<text x="218.5" y="234" font-size="12.5" class="cjunktx" text-anchor="middle">lamp <tspan fill="#94a3b8">0.0006</tspan></text>
+<rect x="275" y="218" width="41" height="24" rx="12" class="cmore" stroke-width="1"/>
+<text x="295.5" y="234" font-size="12.5" class="cmoretx" text-anchor="middle">+38</text>
+<text x="58" y="276" font-size="13" class="body">1 useful word, 39 junk</text>
+<rect x="368" y="160" width="316" height="142" rx="12" class="good" stroke-width="1.5"/>
+<circle cx="398" cy="190" r="12" fill="#22c55e"/>
+<text x="398" y="195" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">&#10003;</text>
+<text x="418" y="196" font-size="19" font-weight="700" class="ink">keeps 1</text>
+<rect x="390" y="218" width="104" height="24" rx="12" fill="#6366f1"/>
+<text x="442.0" y="234" font-size="12.5" fill="#ffffff" text-anchor="middle">America <tspan fill="#c7d2fe">0.95</tspan></text>
+<text x="390" y="276" font-size="13" class="body">just the word that fit</text>
+<rect x="36" y="322" width="648" height="36" rx="10" class="panel bdr" stroke-width="1"/>
+<text x="52" y="345" font-size="13.5" class="sub"><tspan font-weight="700" class="ink">Uncertain model</tspan>&#160;&#160;&#183;&#160;&#160;next word after&#160;&#160;<tspan font-style="italic" class="ink">&#8220;I spent the weekend ___&#8221;</tspan></text>
+<rect x="36" y="366" width="316" height="142" rx="12" class="warn" stroke-width="1.5"/>
+<circle cx="66" cy="396" r="12" fill="#f59e0b"/>
+<text x="66" y="401" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">!</text>
+<text x="86" y="402" font-size="19" font-weight="700" class="ink">keeps 40</text>
+<rect x="58" y="424" width="104" height="24" rx="12" fill="#6366f1"/>
+<text x="110.0" y="440" font-size="12.5" fill="#ffffff" text-anchor="middle">reading <tspan fill="#c7d2fe">0.04</tspan></text>
+<rect x="170" y="424" width="97" height="24" rx="12" fill="#6366f1"/>
+<text x="218.5" y="440" font-size="12.5" fill="#ffffff" text-anchor="middle">hiking <tspan fill="#c7d2fe">0.04</tspan></text>
+<rect x="275" y="424" width="41" height="24" rx="12" class="cmore" stroke-width="1"/>
+<text x="295.5" y="440" font-size="12.5" class="cmoretx" text-anchor="middle">+38</text>
+<text x="58" y="482" font-size="13" class="body">fixed 40 — 160 good ones cut</text>
+<rect x="368" y="366" width="316" height="142" rx="12" class="good" stroke-width="1.5"/>
+<circle cx="398" cy="396" r="12" fill="#22c55e"/>
+<text x="398" y="401" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">&#10003;</text>
+<text x="418" y="402" font-size="19" font-weight="700" class="ink">keeps ~140</text>
+<rect x="390" y="424" width="104" height="24" rx="12" fill="#6366f1"/>
+<text x="442.0" y="440" font-size="12.5" fill="#ffffff" text-anchor="middle">reading <tspan fill="#c7d2fe">0.04</tspan></text>
+<rect x="502" y="424" width="97" height="24" rx="12" fill="#6366f1"/>
+<text x="550.5" y="440" font-size="12.5" fill="#ffffff" text-anchor="middle">hiking <tspan fill="#c7d2fe">0.04</tspan></text>
+<rect x="607" y="424" width="48" height="24" rx="12" class="cmore" stroke-width="1"/>
+<text x="631.0" y="440" font-size="12.5" class="cmoretx" text-anchor="middle">+138</text>
+<text x="390" y="482" font-size="13" class="body">matches the real spread</text>
+<text x="360" y="524" font-size="13.5" font-style="italic" class="sub" text-anchor="middle">The top-k column never moves; the top-p column tracks the model&#8217;s confidence.</text>
+</svg>

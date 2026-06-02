@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="470" viewBox="0 0 720 470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<style>
+.bg{fill:#ffffff}.bdr{stroke:#e2e8f0}
+.ink{fill:#1e293b}.inks{stroke:#1e293b}
+.body{fill:#475569}.sub{fill:#64748b}.mut{fill:#94a3b8}
+.panel{fill:#f8fafc}.grid{stroke:#f1f5f9}.axis{stroke:#cbd5e1}
+.warn{fill:#fef2f2;stroke:#fecaca}.good{fill:#f0fdf4;stroke:#bbf7d0}
+.heat{fill:#fff7ed;stroke:#fed7aa}.heattx{fill:#c2410c}.heatsub{fill:#b45309}
+.pillw{fill:#fee2e2}.pillwtx{fill:#b91c1c}.pillg{fill:#dcfce7}.pillgtx{fill:#15803d}
+.cjunk{fill:#f1f5f9}.cjunktx{fill:#475569}.cmore{fill:#ffffff;stroke:#cbd5e1}.cmoretx{fill:#64748b}
+.filt{fill:#eef2ff;stroke:#c7d2fe}
+@media (prefers-color-scheme:dark){
+.bg{fill:#1f2430}.bdr{stroke:#39414f}
+.ink{fill:#e6e9f0}.inks{stroke:#e6e9f0}
+.body{fill:#c2cad8}.sub{fill:#aab2c2}.mut{fill:#8b93a5}
+.panel{fill:#272d3a}.grid{stroke:#2a3140}.axis{stroke:#525a6b}
+.warn{fill:#3a2527;stroke:#5e3a3d}.good{fill:#1e3328;stroke:#356048}
+.heat{fill:#3a2a1b;stroke:#6b4a2a}.heattx{fill:#fdba74}.heatsub{fill:#e8a06a}
+.pillw{fill:#4a2527}.pillwtx{fill:#fca5a5}.pillg{fill:#1f3a2a}.pillgtx{fill:#86efac}
+.cjunk{fill:#2b3140}.cjunktx{fill:#aeb6c6}.cmore{fill:#1f2430;stroke:#475063}.cmoretx{fill:#9aa3b5}
+.filt{fill:#262b40;stroke:#434b73}
+}
+</style>
+<rect x="2" y="2" width="716" height="466" rx="16" class="bg bdr" stroke-width="2"/>
+<text x="36" y="44" font-size="19" font-weight="600" class="ink">Same logits, three temperatures</text>
+<text x="36" y="66" font-size="13" class="mut">how temperature reshapes one fixed set of scores</text>
+<line x1="64" y1="406.0" x2="692" y2="406.0" class="grid" stroke-width="1"/>
+<text x="54" y="410.0" font-size="12" class="mut" text-anchor="end">0.0</text>
+<line x1="64" y1="343.2" x2="692" y2="343.2" class="grid" stroke-width="1"/>
+<text x="54" y="347.2" font-size="12" class="mut" text-anchor="end">0.2</text>
+<line x1="64" y1="280.4" x2="692" y2="280.4" class="grid" stroke-width="1"/>
+<text x="54" y="284.4" font-size="12" class="mut" text-anchor="end">0.4</text>
+<line x1="64" y1="217.6" x2="692" y2="217.6" class="grid" stroke-width="1"/>
+<text x="54" y="221.6" font-size="12" class="mut" text-anchor="end">0.6</text>
+<line x1="64" y1="154.8" x2="692" y2="154.8" class="grid" stroke-width="1"/>
+<text x="54" y="158.8" font-size="12" class="mut" text-anchor="end">0.8</text>
+<line x1="64" y1="92.0" x2="692" y2="92.0" class="grid" stroke-width="1"/>
+<text x="54" y="96.0" font-size="12" class="mut" text-anchor="end">1.0</text>
+<rect x="81.8" y="105.2" width="26" height="300.8" rx="4" fill="#2563eb"/>
+<rect x="113.8" y="229.2" width="26" height="176.8" rx="4" fill="#7c3aed"/>
+<rect x="145.8" y="281.7" width="26" height="124.3" rx="4" fill="#ea580c"/>
+<text x="126.8" y="428" font-size="13" class="ink" text-anchor="middle">the</text>
+<rect x="207.4" y="395.3" width="26" height="10.7" rx="4" fill="#2563eb"/>
+<rect x="239.4" y="341.0" width="26" height="65.0" rx="4" fill="#7c3aed"/>
+<rect x="271.4" y="334.7" width="26" height="71.3" rx="4" fill="#ea580c"/>
+<text x="252.4" y="428" font-size="13" class="ink" text-anchor="middle">a</text>
+<rect x="333.0" y="404.0" width="26" height="2.0" rx="4" fill="#2563eb"/>
+<rect x="365.0" y="366.6" width="26" height="39.4" rx="4" fill="#7c3aed"/>
+<rect x="397.0" y="352.0" width="26" height="54.0" rx="4" fill="#ea580c"/>
+<text x="378.0" y="428" font-size="13" class="ink" text-anchor="middle">cat</text>
+<rect x="458.6" y="405.6" width="26" height="0.4" rx="4" fill="#2563eb"/>
+<rect x="490.6" y="382.1" width="26" height="23.9" rx="4" fill="#7c3aed"/>
+<rect x="522.6" y="365.1" width="26" height="40.9" rx="4" fill="#ea580c"/>
+<text x="503.6" y="428" font-size="13" class="ink" text-anchor="middle">river</text>
+<rect x="584.2" y="406.0" width="26" height="0.0" rx="4" fill="#2563eb"/>
+<rect x="616.2" y="397.2" width="26" height="8.8" rx="4" fill="#7c3aed"/>
+<rect x="648.2" y="382.5" width="26" height="23.5" rx="4" fill="#ea580c"/>
+<text x="629.2" y="428" font-size="13" class="ink" text-anchor="middle">xylophone</text>
+<line x1="64" y1="406" x2="692" y2="406" class="axis" stroke-width="1.5"/>
+<rect x="416" y="29" width="14" height="14" rx="3" fill="#2563eb"/>
+<text x="436" y="41" font-size="13" class="body">T = 0.3</text>
+<rect x="508" y="29" width="14" height="14" rx="3" fill="#7c3aed"/>
+<text x="528" y="41" font-size="13" class="body">T = 1.0</text>
+<rect x="600" y="29" width="14" height="14" rx="3" fill="#ea580c"/>
+<text x="620" y="41" font-size="13" class="body">T = 1.8</text>
+</svg>
