@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<style>
+.bg{fill:#ffffff}.bdr{stroke:#e2e8f0}
+.ink{fill:#1e293b}.inks{stroke:#1e293b}
+.body{fill:#475569}.sub{fill:#64748b}.mut{fill:#94a3b8}
+.panel{fill:#f8fafc}.grid{stroke:#f1f5f9}.axis{stroke:#cbd5e1}
+.warn{fill:#fef2f2;stroke:#fecaca}.good{fill:#f0fdf4;stroke:#bbf7d0}
+.heat{fill:#fff7ed;stroke:#fed7aa}.heattx{fill:#c2410c}.heatsub{fill:#b45309}
+.pillw{fill:#fee2e2}.pillwtx{fill:#b91c1c}.pillg{fill:#dcfce7}.pillgtx{fill:#15803d}
+.cjunk{fill:#f1f5f9}.cjunktx{fill:#475569}.cmore{fill:#ffffff;stroke:#cbd5e1}.cmoretx{fill:#64748b}
+.filt{fill:#eef2ff;stroke:#c7d2fe}
+@media (prefers-color-scheme:dark){
+.bg{fill:#1f2430}.bdr{stroke:#39414f}
+.ink{fill:#e6e9f0}.inks{stroke:#e6e9f0}
+.body{fill:#c2cad8}.sub{fill:#aab2c2}.mut{fill:#8b93a5}
+.panel{fill:#272d3a}.grid{stroke:#2a3140}.axis{stroke:#525a6b}
+.warn{fill:#3a2527;stroke:#5e3a3d}.good{fill:#1e3328;stroke:#356048}
+.heat{fill:#3a2a1b;stroke:#6b4a2a}.heattx{fill:#fdba74}.heatsub{fill:#e8a06a}
+.pillw{fill:#4a2527}.pillwtx{fill:#fca5a5}.pillg{fill:#1f3a2a}.pillgtx{fill:#86efac}
+.cjunk{fill:#2b3140}.cjunktx{fill:#aeb6c6}.cmore{fill:#1f2430;stroke:#475063}.cmoretx{fill:#9aa3b5}
+.filt{fill:#262b40;stroke:#434b73}
+}
+</style>
+<rect x="2" y="2" width="716" height="416" rx="16" class="bg bdr" stroke-width="2"/>
+<text x="36" y="44" font-size="19" font-weight="600" class="ink">A margin thinner than the arithmetic</text>
+<text x="36" y="66" font-size="13" class="mut">prompt: &#8220;I flipped a coin. It landed on&#8221;  ·  T = 0  ·  two runs, same input</text>
+<rect x="36" y="92" width="300" height="200" rx="12" class="panel bdr" stroke-width="1.5"/>
+<text x="58" y="124" font-size="15" font-weight="700" class="ink">Run 1</text>
+<text x="58" y="156" font-size="13.5" class="ink">heads</text>
+<text x="314" y="156" font-size="11.5" class="mut" text-anchor="end">logit 9.731043</text>
+<rect x="58" y="162" width="232" height="22" rx="6" fill="#6366f1"/>
+<text x="275" y="178" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">&#10003;</text>
+<text x="58" y="212" font-size="13.5" class="ink">tails</text>
+<text x="314" y="212" font-size="11.5" class="mut" text-anchor="end">logit 9.731040</text>
+<rect x="58" y="218" width="176" height="22" rx="6" fill="#9aa3b5"/>
+<text x="58" y="270" font-size="13.5" class="body">argmax &#8594; <tspan font-weight="700" class="ink">heads</tspan></text>
+<rect x="384" y="92" width="300" height="200" rx="12" class="panel bdr" stroke-width="1.5"/>
+<text x="406" y="124" font-size="15" font-weight="700" class="ink">Run 2</text>
+<text x="406" y="156" font-size="13.5" class="ink">heads</text>
+<text x="662" y="156" font-size="11.5" class="mut" text-anchor="end">logit 9.731041</text>
+<rect x="406" y="162" width="176" height="22" rx="6" fill="#9aa3b5"/>
+<text x="406" y="212" font-size="13.5" class="ink">tails</text>
+<text x="662" y="212" font-size="11.5" class="mut" text-anchor="end">logit 9.731044</text>
+<rect x="406" y="218" width="232" height="22" rx="6" fill="#6366f1"/>
+<text x="623" y="234" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">&#10003;</text>
+<text x="406" y="270" font-size="13.5" class="body">argmax &#8594; <tspan font-weight="700" class="ink">tails</tspan></text>
+<circle cx="360" cy="188" r="20" fill="#f59e0b"/>
+<text x="360" y="194" font-size="19" font-weight="700" fill="#ffffff" text-anchor="middle">&#8644;</text>
+<text x="360" y="226" font-size="11.5" font-weight="700" class="sub" text-anchor="middle" letter-spacing="0.5">FLIPS</text>
+<text x="360" y="328" font-size="13.5" class="body" text-anchor="middle">The top two logits sit about <tspan font-weight="700" class="ink">0.000003</tspan> apart — the coin gives the model no reason to prefer one.</text>
+<text x="360" y="352" font-size="13.5" class="body" text-anchor="middle">Re-batch the request, sum in a different order, and the last bits round the other way.</text>
+<text x="360" y="380" font-size="13.5" font-style="italic" class="sub" text-anchor="middle">That alone flips the argmax: &#8220;heads&#8221; on one run, &#8220;tails&#8221; on the next, both at T = 0.</text>
+</svg>
