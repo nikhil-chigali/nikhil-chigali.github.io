@@ -36,5 +36,7 @@ gate: present the full plan and get an explicit "publish" from Nikhil BEFORE any
 8. Update the manifest: post `status: published`, `gate: G9_published`, bump `updated`,
    append a `log` line. If every post in `posts[]` is now `published`, set
    `series_phase: done`. Delete the `post/<slug>` branch (`git branch -d`).
-9. Report: the deploy run id + conclusion, the live URL
-   (`/posts/<title-slug>/`), and the link-sweep results.
+9. Report: the deploy run id + conclusion, the live URL, and the link-sweep results. The
+   URL is `/posts/<title-slug>/` where `<title-slug>` is the manifest `slug` with the
+   leading `YYYY-MM-DD-` date prefix stripped (the permalink is `/posts/:title/` per
+   `_config.yml`) — e.g. slug `2026-06-04-foo-bar` → `/posts/foo-bar/`.
