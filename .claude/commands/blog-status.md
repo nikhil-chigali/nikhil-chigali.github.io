@@ -11,11 +11,11 @@ Report the pipeline status for the blog series.
    If none exists, say "No active series — start one with /blog-series <seed>" and stop.
 2. Print: series title + slug, `series_phase`, `current_post`, and a per-post table
    (n, title, status, furthest gate).
-3. Print the **next action**: map the furthest state to the command that advances it
-   (architected → /blog-research; researched → /blog-plan 1; outlined → /blog-build N;
-   built → /blog-verify N). States beyond `built` (verified → /blog-polish, polished →
-   /blog-review, reviewed → /blog-publish) are Wave 2 commands; show them as "(Wave 2)"
-   until those commands exist.
+3. Print the **next action**: map the furthest state to the command that advances it —
+   seed → /blog-series <seed>; architected → /blog-research; researched → /blog-plan 1;
+   outlined → /blog-build N; built → /blog-verify N; verified → /blog-polish N;
+   polished → /blog-review N; reviewed → /blog-publish N; published → done (next post or
+   series complete).
 4. Print the last 3 `log` entries.
 
 Read-only. Do not modify the manifest.
