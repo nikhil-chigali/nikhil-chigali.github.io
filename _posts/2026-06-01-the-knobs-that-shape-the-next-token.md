@@ -10,9 +10,7 @@ math: true
 
 ## Picking a word out of fifty thousand
 
-You type a prompt, hit enter, and a word appears.
-
-> **Where does that word come from?**
+> You type a prompt, hit enter, and a word appears. **Where does that word come from?**
 {: .prompt-tip }
 
 The last thing a language model does, before any text shows up, is produce a list of numbers. One number for every token it knows — every word, word-piece, and punctuation mark in its vocabulary. For a typical model that vocabulary runs to tens of thousands of entries, so the model hands back tens of thousands of numbers, all at once.
@@ -61,10 +59,10 @@ A few parts of this trip people up.
 - **$T=0$ is not a division by zero.** As $T$ shrinks toward 0, the distribution piles all of its mass onto the single highest logit. That is exactly the greedy decoding from before, so implementations define $T=0$ to mean "take the argmax" and skip the arithmetic.
 - **Temperature reshapes; it never deletes.** Even at low $T$, every token keeps a nonzero probability, a tiny one for the long tail of unlikely tokens.
 
-> Providers don't agree on the ceiling. OpenAI's API takes a `temperature` from 0 to 2 and defaults to 1; Anthropic's takes 0 to 1, also defaulting to 1, and won't go higher. So `temperature = 1` is the midpoint of OpenAI's range but the maximum of Anthropic's — check the docs before assuming 1.5 is even a legal value.
+> Providers don't agree on the scale, and the numbers don't carry across. [OpenAI's API](https://platform.openai.com/docs/api-reference/chat/create) takes a `temperature` from 0 to 2; [Anthropic's](https://platform.claude.com/docs/en/api/messages) takes 0 to 1 and rejects anything higher. Both default to 1, but that shared default is a coincidence of labeling, not of behavior: 1.0 sits at the middle of OpenAI's range and at the very top of Anthropic's, so the same number asks for very different amounts of randomness. Treat temperature as a per-provider dial — read each one's docs rather than carrying a value from one to another.
 {: .prompt-warning }
 
-That surviving tail raises a question we have stepped past: given a distribution like this, how does a single token actually come out of it?
+We have a distribution now, but the whole reason for building it was to be able to pick a token that isn't always the top one. So how does a single token actually get drawn from a list of probabilities?
 
 ## What "drawing" a token actually means
 
@@ -79,7 +77,7 @@ Because each piece is as wide as its token's probability, the likely tokens come
 > **Greedy decoding is just sampling with the dice removed:** skip the random number and always stand on the widest slice.
 {: .prompt-tip }
 
-Every knob in this post feeds into this one draw. Temperature, top-k, and top-p all act before it, stretching the pieces or removing some outright. The draw itself never changes; the strip it lands on does. Which puts the spotlight back on that long tail, because it still owns a sliver of the strip.
+The draw is the same move no matter how you set the knobs. Temperature, top-k, and top-p all act earlier, on the strip itself — temperature stretches the slices, top-k and top-p cut some away. The draw never changes: pick a random number, take the slice it lands in. So everything rides on the shape of the strip going in. And the long tail still has a thin sliver of it, which means the draw can still land on a token you never wanted.
 
 ## The leftover problem: cutting off the tail
 
@@ -103,7 +101,7 @@ Now take a position where the model is genuinely uncertain. The next word could 
 
 The same `k` is wrong in both cases, and for the same reason. `k` is a fixed count. It can't see whether the distribution is a tall spike or a low plateau, so it keeps too many tokens when the model is sure and too few when the model is hedging.
 
-The fix is to stop counting tokens and start measuring probability mass. Sort the tokens by probability, then walk down the list adding them up until the running total reaches `p`. Keep exactly that set, the smallest group whose probabilities sum to `p`, discard the rest, renormalize, and sample. This is **top-p**, also called nucleus sampling, with a typical `p` of 0.9 to 0.95.
+The fix is to stop counting tokens and start measuring probability mass. Sort the tokens by probability, then walk down the list adding them up until the running total reaches `p`. Keep exactly that set, the smallest group whose probabilities sum to `p`, discard the rest, renormalize, and sample. This is **top-p**, also called [nucleus sampling](https://arxiv.org/abs/1904.09751), with a typical `p` of 0.9 to 0.95.
 
 > top-k commits to a fixed *number* of tokens; top-p commits to a fixed *amount* of probability. That single difference is the whole reason top-p adapts to confidence and top-k can't.
 {: .prompt-tip }
@@ -144,4 +142,4 @@ The consequence is concrete. Turn the temperature up and you fatten the tail, wh
 > **The one-paragraph version.** Softmax turns logits into probabilities; temperature reshapes that distribution, sharper or flatter; top-k or top-p trims the unlikely tail; renormalizing rescales what's left; then one weighted random draw picks the token. Greedy decoding is the same pipeline with the draw swapped for "always take the max."
 {: .prompt-tip }
 
-Those seven steps are the map for the rest of this series. Every question that comes later is a question about one of them. [Part 2](/posts/why-t0-doesnt-give-you-the-same-answer-twice/) asks why step 7 doesn't give you the same token twice even when $T=0$ pins the distribution to a single peak. Part 3 asks about the failures none of these steps can fix, the cases where no temperature and no cutoff will save the output. If you want to keep going, [the rest of the series](/tags/decoding-llms/) picks up from here.
+Those seven steps are the map for the rest of this series. Every question that comes later is a question about one of them. [Part 2](/posts/why-t0-doesnt-give-you-the-same-answer-twice/) asks why step 7 doesn't give you the same token twice even when $T=0$ pins the distribution to a single peak. [Part 3](/posts/three-things-temperature-cant-fix/) asks about the failures none of these steps can fix, the cases where no temperature and no cutoff will save the output. If you want to keep going, [the rest of the series](/tags/decoding-llms/) picks up from here.

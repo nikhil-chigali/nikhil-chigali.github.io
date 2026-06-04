@@ -35,7 +35,10 @@ That splits "deterministic" into two claims that get quietly bundled into one. T
 
 The second is **inference determinism**: whether the model hands you the same list of logits every time you send it the same input. This is a property of the whole serving stack, the kernels and the batching and the hardware that runs the forward pass, not of the sampler sitting at the end. And in production, nothing guarantees it.
 
-This is the reframe. `T = 0` buys you deterministic *sampling*, not deterministic *inference*. It nails down the draw and says nothing about the scores the draw reads from.
+This is the reframe.
+
+> `T = 0` buys you deterministic *sampling*, not deterministic *inference*. It nails down the draw and says nothing about the scores the draw reads from.
+{: .prompt-tip }
 
 ![A split diagram. From a T=0 "take the argmax" node, two panels branch: a green "sampling determinism" panel — given fixed logits, the argmax is a fixed fact, same scores in, same token out — and an amber "inference determinism" panel — whether the logits are the same list on every run, which production does not guarantee. T=0 fixes the draw, not the scores it draws from.](/assets/img/posts/2026-06-02-why-t0-doesnt-give-you-the-same-answer-twice/determinism-split.svg)
 
@@ -47,9 +50,9 @@ The same request should produce the same logits. So where do they change? Walk u
 
 **The hardware layer.** Floating-point addition is not associative: `(a + b) + c` can land on different last bits than `a + (b + c)`, because each addition rounds to a fixed number of bits and the rounding depends on the running total. A GPU computes one logit by summing thousands of products at once, spread across many threads, and the order in which those partial sums combine depends on how the work gets scheduled. Change the order, change the last bits.
 
-The order is not fixed across runs, and here is the part that surprises people: it depends on **batch composition**. A production API does not run your request alone. It packs your tokens into a batch with whoever else is calling in that same millisecond. A different set of neighbors makes a different batch shape, a different batch shape selects a different GPU kernel, and a different kernel sums the products in a different order. You never see the other requests, but they are in the arithmetic that produces your logits. This is the most common source of drift in real APIs.
+The order is not fixed across runs, and here is the part that surprises people: it depends on **batch composition**. A production API does not run your request alone. It packs your tokens into a batch with whoever else is calling in that same millisecond. A different set of neighbors makes a different batch shape, a different batch shape selects a different GPU kernel, and a different kernel sums the products in a different order. You never see the other requests, but they are in the arithmetic that produces your logits. This is the most common source of drift in real APIs, and the focus of [Thinking Machines Lab's write-up on defeating nondeterminism in LLM inference](https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/).
 
-**The model layer.** Above the hardware sits the model itself, and it may not be the one you think you are calling. Providers update weights behind a stable endpoint name without telling you, so the `gpt-4` you hit today can be a different set of parameters than yesterday. That is why you pin a dated snapshot like `gpt-4-0613` when you need a run to be reproducible: the date freezes the weights. There is a subtler version inside the model itself. A **Mixture-of-Experts** model routes each token to a small subset of its expert networks rather than running all of them, and that routing decision can depend on the batch the token rides in. The same token can take a different path on a different run, and a different path produces different logits.
+**The model layer.** Above the hardware sits the model itself, and it may not be the one you think you are calling. Providers update weights behind a stable endpoint name without telling you, so the `gpt-4` you hit today can be a different set of parameters than yesterday. That is why you pin a [dated snapshot](https://platform.openai.com/docs/models) like `gpt-4-0613` when you need a run to be reproducible: the date freezes the weights. There is a subtler version inside the model itself. A **[Mixture-of-Experts](https://arxiv.org/abs/2401.04088)** model routes each token to a small subset of its expert networks rather than running all of them, and that routing decision can depend on the batch the token rides in. The same token can take a different path on a different run, and a different path produces different logits.
 
 **The input layer.** At the top of the stack is the prompt, and the prompt the model actually reads is often not the one you typed. A serving stack wraps your text in context you never sent: a timestamp, your user or session metadata, a system prompt that an A/B test quietly swapped since yesterday. So two requests you would call identical reach the model as different strings. Different input, different logits, by definition.
 
@@ -67,10 +70,15 @@ Watch it on a concrete case. Ask the model to call a coin: "I flipped a coin. It
 
 ![Two runs of the same T=0 prompt "I flipped a coin. It landed on". The top two logits, for "heads" and "tails", sit about 0.000003 apart, because the coin gives the model no reason to prefer one. In Run 1 heads edges ahead and is the argmax; in Run 2 a different sum order rounds the other way and tails wins. Same prompt, same temperature, different word.](/assets/img/posts/2026-06-02-why-t0-doesnt-give-you-the-same-answer-twice/argmax-flip.svg)
 
-This is not constant chaos. Most steps are not near-ties, so most of the output holds steady run to run. The flip shows up exactly when two continuations were almost equally good — which is also the moment you are least likely to notice the swap, because both words read as fine.
+> This is not constant chaos. Most steps are not near-ties, so most of the output holds steady run to run. The flip shows up exactly when two continuations were almost equally good — which is also the moment you are least likely to notice the swap, because both words read as fine.
+{: .prompt-info }
 
 That is the whole resolution. `T = 0` gives you deterministic *sampling*, not deterministic *inference*. The randomness you switched off was never where the variation came from; it was living one floor down, in the logits the sampler reads. Pinning the temperature pins the draw and leaves the scores free to move.
 
-If you actually need a run you can reproduce, the levers are in the inference stack, not on the temperature dial. Pin a dated model version so the weights stay put. Request a fixed seed where the provider offers one. And accept that batched serving can still wobble the last bits, so byte-for-byte reproducibility is a goal you approach, not one you are handed.
+If you actually need a run you can reproduce, the levers are in the inference stack, not on the temperature dial:
 
-[Part 3](/tags/decoding-llms/) picks up the same misread from the other side. Reaching for the temperature dial felt like the fix here, and it half was. Next time the reach comes back for a problem the dial cannot touch at all.
+- **Pin a dated model version** so the weights stay put.
+- **Request a fixed seed** where the provider offers one.
+- **Accept that batched serving can still wobble the last bits** — byte-for-byte reproducibility is a goal you approach, not one you are handed.
+
+[Part 3](/posts/three-things-temperature-cant-fix/) picks up the same misread from the other side. Reaching for the temperature dial felt like the fix here, and it half was. Next time the reach comes back for a problem the dial cannot touch at all.
