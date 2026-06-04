@@ -36,6 +36,8 @@ Dispatch ONE `drafter` subagent for the whole post.
 
 On a G4 change request, re-dispatch the `drafter` only — with the specific section and the requested change — never the diagram-maker.
 
+When the draft clears G4 — even if diagrams are still looping — record progress so a resumed build does not re-draft from scratch: set the post's `gate: G4_draft` (leave `status: outlined`), bump `updated`, and append a `log` line. On resume, if the post is already at `gate: G4_draft`, skip the drafter and run only the diagrams that have not yet cleared G5.
+
 ## Track B — diagrams (gate G5)
 
 For **each** component in the plan marked as a diagram, dispatch one `diagram-maker` subagent (one per diagram).
@@ -67,12 +69,10 @@ Each subagent reports one of four statuses. Handle each:
 
 ## Gate bookkeeping
 
-When the draft has passed **G4** and **every** diagram has passed **G5**, update the post's entry in `docs/blog/<slug>/manifest.yaml`:
+Record two checkpoints, so a resumed build knows exactly what is left:
 
-- `status: built`
-- `gate: G5_diagrams`
-- bump the top-level `updated` to today (`YYYY-MM-DD`)
-- append one `log` line: `"<YYYY-MM-DD> built: post <N> drafted + diagrams approved"`
+- **When the draft clears G4** (diagrams may still be in flight): set `gate: G4_draft`, leave `status: outlined`, bump `updated`, append `"<YYYY-MM-DD> drafted: post <N> draft cleared G4"`.
+- **When the draft has passed G4 and every diagram has passed G5:** set `status: built`, `gate: G5_diagrams`, bump `updated`, append `"<YYYY-MM-DD> built: post <N> drafted + diagrams approved"`.
 
 Do not invent manifest fields — use only what the template defines. Do not set `gate: G5_diagrams` until the draft and all diagrams have cleared.
 

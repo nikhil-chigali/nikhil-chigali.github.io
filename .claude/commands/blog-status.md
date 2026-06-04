@@ -13,7 +13,9 @@ Report the pipeline status for the blog series.
    (n, title, status, furthest gate).
 3. Print the **next action**: map the furthest state to the command that advances it
    (architected → /blog-research; researched → /blog-plan 1; outlined → /blog-build N;
-   built → /blog-verify N; etc.).
+   built → /blog-verify N). States beyond `built` (verified → /blog-polish, polished →
+   /blog-review, reviewed → /blog-publish) are Wave 2 commands; show them as "(Wave 2)"
+   until those commands exist.
 4. Print the last 3 `log` entries.
 
 Read-only. Do not modify the manifest.

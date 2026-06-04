@@ -3,7 +3,7 @@ name: nikhil-brand-voice
 description: Use when writing, editing, or auditing technical posts on ML/AI topics for Nikhil Chigali's blog. Builds intuition through Feynman-style teaching while maintaining a clear, precise tone free of AI-generated tells.
 ---
 
-# Nikhil — Technical Writing Skill
+# Nikhil — Brand Voice Skill
 
 ## Core Principle
 
