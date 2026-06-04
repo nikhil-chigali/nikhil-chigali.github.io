@@ -19,5 +19,7 @@ Rules:
 - Flag contradictions between sources rather than silently picking one.
 - Do not write blog prose. Output is reference material only.
 
-Finish by updating `manifest.yaml`: `series_phase: researched`, append a `log` line.
-Report a short summary and the path written.
+Finish by appending a `log` line to `manifest.yaml` noting the dump was written. Do
+NOT set `series_phase: researched` yourself — that advance happens at the G2 gate in
+`/blog-research`, after Nikhil approves the dump. Report a short summary and the path
+written.

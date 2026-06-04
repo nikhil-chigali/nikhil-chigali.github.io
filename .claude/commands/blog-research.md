@@ -13,5 +13,7 @@ Run research for the blog series.
 3. When it returns, summarize the research-dump coverage per planned post and surface
    the "depth we missed" notes for Nikhil's review (GATE G2). Do not proceed past the
    gate automatically.
-4. On approval, confirm the manifest shows `series_phase: researched` and tell the user
-   to run /blog-plan 1.
+4. Only on Nikhil's approval, set `series_phase: researched` in the manifest, bump
+   `updated`, append a `log` line, and tell the user to run /blog-plan 1. If the run is
+   rejected, leave `series_phase` unchanged so the gate stays honest (research is
+   re-runnable).
