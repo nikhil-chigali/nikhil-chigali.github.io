@@ -16,5 +16,12 @@ Review a polished post in two stages. Order matters: structure before sentences.
 3. **Stage B — line level.** Dispatch the `writing-auditor` on the post. It edits AI tells
    and calibrates em dashes in place and reports each before → after. Present the changes for
    Nikhil to scan; revert any he rejects.
-4. Only after both stages pass, set the post `status: reviewed`, `gate: G8_review`, bump
-   `updated`, append a `log` line, and tell the user to run /blog-publish $1.
+4. **Capture voice corrections.** For each change Nikhil made or overrode during Stage A/B
+   that reflects a recurring voice preference (not a one-off typo or fact fix), append a line
+   to `docs/blog/<slug>/voice-feedback-log.md` in the /blog-voice format:
+   `<today> | post $1 | G8_review | signal: <kebab-pattern-label> | type: correction | <what changed>`.
+   Use `type: principle` if he stated it as a rule. This fuels the voice-evolver; if there are
+   no voice-level corrections, skip it.
+5. Only after both stages pass, set the post `status: reviewed`, `gate: G8_review`, bump
+   `updated`, append a `log` line, and tell the user to run /blog-publish $1 (and, when ready,
+   /blog-voice to fold this feedback into the skill).

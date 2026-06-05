@@ -80,6 +80,11 @@ Copy `docs/blog/_templates/manifest.template.yaml` to `docs/blog/<slug>/manifest
 
 Do not invent fields. Use only what the template defines. Leave `current_post: 0` until a post is actually being worked.
 
+Also create `docs/blog/<slug>/voice-feedback-log.md` from
+`docs/blog/_templates/voice-feedback-log.template.md` (substitute the slug into the heading,
+keep it otherwise empty). This gives the voice loop a home from the first post, so corrections
+captured later (by `/blog-review` or `/blog-voice note`) always have a file to append to.
+
 ## Voice reference
 
 Any sample prose you write during architecture — hooks, beat descriptions, the through-line paragraph — follows the `nikhil-brand-voice` skill. Motivate before naming, no AI throat-clearing, no significance inflation, precise terms defined inline. A hook is a real opening question, not a table-of-contents line.
