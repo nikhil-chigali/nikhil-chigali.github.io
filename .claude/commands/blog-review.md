@@ -19,7 +19,7 @@ Review a polished post in two stages. Order matters: structure before sentences.
 4. **Capture voice corrections.** For each change Nikhil made or overrode during Stage A/B
    that reflects a recurring voice preference (not a one-off typo or fact fix), append a line
    to `docs/blog/<slug>/voice-feedback-log.md` in the /blog-voice format:
-   `<today> | post $1 | G8 | signal: <kebab-pattern-label> | type: correction | <what changed>`.
+   `<today> | post $1 | G8_review | signal: <kebab-pattern-label> | type: correction | <what changed>`.
    Use `type: principle` if he stated it as a rule. This fuels the voice-evolver; if there are
    no voice-level corrections, skip it.
 5. Only after both stages pass, set the post `status: reviewed`, `gate: G8_review`, bump
